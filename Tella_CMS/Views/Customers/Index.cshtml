@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Danh sách khách hàng";
+}
+
+<style>
+    div#LichSu {
+        overflow-x: scroll;
+    }
+
+    .k-grouping-header {
+        display: none;
+    }
+</style>
+<h4>Khách hàng</h4>
+<hr />
+
+
+@(Html.Kendo().Grid<CustomerViewModel>().Name("cus")
+    .Columns(cols =>
+    {
+        cols.Bound(p => p.Stt).Title("STT").Width(100);
+        cols.Bound(p => p.Code).Title("Mã khách hàng").Width(300);
+        cols.Bound(p => p.FullName).Title("Tên khách hàng").Width(300);
+        cols.Bound(p => p.Telephone).Title("Số điện thoại").Width(200);
+        cols.Bound(p => p.Age).Title("Năm sinh").Width(200);
+        cols.Bound(p => p.Address1).Title("Địa chỉ 1").Width(200);
+        cols.Bound(p => p.Address2).Title("Địa chỉ 2").Width(200);
+        cols.Bound(p => p.Email).Title("Email").Width(200);
+
+    })
+    .Pageable()
+    .Sortable()
+    .Filterable()
+    .Groupable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Read(read => read.Action("Data_Read", "Customers"))
+    )
+)
+
+<script>
+    $("#cus").kendoGrid({
+        scrollable: true,
+        // other configuration
+    });</script>

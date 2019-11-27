@@ -12,6 +12,9 @@ using Tella_CMS.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Tella_CMS.Models;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Tella_CMS
 {
@@ -27,7 +30,7 @@ namespace Tella_CMS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<Tella_CMSContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
@@ -38,7 +41,14 @@ namespace Tella_CMS
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                 .AddNewtonsoftJson(options =>
+                 {
+                     // Return JSON responses in LowerCase?
+                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                     // Resolve Looping navigation properties
+                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                 });
             services.AddRazorPages()
                             .AddRazorRuntimeCompilation();
             services.AddKendo();

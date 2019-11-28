@@ -1,0 +1,67 @@
+﻿@model List<VipCardViewModel>
+
+@{
+    ViewData["Title"] = "VIP Card";
+}
+
+<h1>Danh sách VIP Card trắng</h1>
+
+<p>
+    <a asp-action="Create">Thêm thông tin thẻ trống</a>
+</p>
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>STT</th>
+            <th>
+                Mã thẻ
+            </th>
+            <th>
+                Seri
+            </th>
+            <th>
+                Trạng thái
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Xem</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Xoá</a>
+                    <a class="btn btn-danger" asp-action="CapThe" asp-route-id="@item.Id">Cấp thẻ</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seri)
+                </td>
+                @{
+                    if (item.RowStatus == 0)
+                    {
+                        <td>
+                            Chưa cấp
+                        </td>
+                    }
+                    
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>

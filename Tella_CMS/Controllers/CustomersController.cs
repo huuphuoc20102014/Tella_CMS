@@ -372,7 +372,6 @@ namespace Tella_CMS.Controllers
     public class CustomerViewModel
     {
         public int Stt { get; set; }
-
         public string Id { get; set; }
         public string Code { get; set; }
         public string FullName { get; set; }

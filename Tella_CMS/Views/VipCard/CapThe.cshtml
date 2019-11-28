@@ -1,0 +1,49 @@
+﻿@model Tella_CMS.Models.VipCard
+
+
+<div class="alert alert-primary" role="alert">
+    <h4>Cấp thẻ</h4>
+</div>
+<hr />
+<form asp-action="CapThe" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label  class="col-form-label">Số seri: </label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input class="k-textbox form-control" value="@ViewBag.Seri" readonly />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="FkCustomerId" class="col-form-label">Nhập mã khách hàng</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="FkCustomerId" class="k-textbox form-control" required />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="FkCustomerId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+            <a asp-action="Index" class="k-button">Quay lại</a>
+        </div>
+    </div>
+    <input type="hidden" name="Id" value="@ViewBag.Id" />
+    <input type="hidden" asp-for="RowVersion" />
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,4 +1,4 @@
-﻿@model Tella_CMS.Models.VipCard
+﻿@model Tella_CMS.Efs.Entities.VIP_Card
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,7 +6,7 @@
 
 <h1>Edit</h1>
 
-<h4>VipCard</h4>
+<h4>VIP_Card</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,9 +24,9 @@
                 <span asp-validation-for="Seri" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FkCustomerId" class="control-label"></label>
-                <input asp-for="FkCustomerId" class="form-control" />
-                <span asp-validation-for="FkCustomerId" class="text-danger"></span>
+                <label asp-for="Fk_Customer_Id" class="control-label"></label>
+                <input asp-for="Fk_Customer_Id" class="form-control" />
+                <span asp-validation-for="Fk_Customer_Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CreatedBy" class="control-label"></label>

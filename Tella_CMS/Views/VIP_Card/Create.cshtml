@@ -1,0 +1,56 @@
+﻿@model VipCardViewModel
+
+<h4>Thêm VIP card</h4>
+<hr />
+<form asp-controller="VIP_Card" asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Tạo" class="btn btn-primary" />
+            <a asp-action="Index" class="k-button">Quay lại</a>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Code" class="col-form-label">Mã</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Code" class="k-textbox form-control" required />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Seri" class="col-form-label">Số Seri</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Seri" class="k-textbox form-control" required />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Seri" class="text-danger"></span>
+        </div>
+    </div>
+   
+
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Tạo" class="btn btn-primary" />
+            <a asp-action="Index" class="k-button">Quay lại</a>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

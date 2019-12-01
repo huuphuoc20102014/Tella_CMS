@@ -11,20 +11,20 @@ using Tella_CMS.Models;
 
 namespace Tella_CMS.Controllers
 {
-    public class VipCardController : Controller
+    public class VIP_CardController : Controller
     {
         private readonly Tella_CMSContext _context;
 
-        public VipCardController(Tella_CMSContext context)
+        public VIP_CardController(Tella_CMSContext context)
         {
             _context = context;
         }
 
-        // GET: VipCard
+        // GET: VIP_Card
         public async Task<IActionResult> Index()
         {
             var listCard = await _context.VIP_Card
-                .Where(p=>p.RowStatus == (int)RowStatusEnum.None)
+                .Where(p => p.RowStatus == (int)RowStatusEnum.None)
                 .OrderBy(p => p.CreatedDate)
                 .Select(p => new VipCardViewModel
                 {
@@ -44,7 +44,7 @@ namespace Tella_CMS.Controllers
             return View(listCard);
         }
 
-        // GET: VipCard/Details/5
+        // GET: VIP_Card/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -52,39 +52,39 @@ namespace Tella_CMS.Controllers
                 return NotFound();
             }
 
-            var vipCard = await _context.VIP_Card
+            var vIP_Card = await _context.VIP_Card
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vipCard == null)
+            if (vIP_Card == null)
             {
                 return NotFound();
             }
 
-            return View(vipCard);
+            return View(vIP_Card);
         }
 
-        // GET: VipCard/Create
+        // GET: VIP_Card/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: VipCard/Create
+        // POST: VIP_Card/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Code,Seri,FkCustomerId,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VIP_Card vipCard)
+        public async Task<IActionResult> Create([Bind("Id,Code,Seri,Fk_Customer_Id,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VIP_Card vIP_Card)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vipCard);
+                _context.Add(vIP_Card);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vipCard);
+            return View(vIP_Card);
         }
 
-        // GET: VipCard/Edit/5
+        // GET: VIP_Card/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -92,22 +92,22 @@ namespace Tella_CMS.Controllers
                 return NotFound();
             }
 
-            var vipCard = await _context.VIP_Card.FindAsync(id);
-            if (vipCard == null)
+            var vIP_Card = await _context.VIP_Card.FindAsync(id);
+            if (vIP_Card == null)
             {
                 return NotFound();
             }
-            return View(vipCard);
+            return View(vIP_Card);
         }
 
-        // POST: VipCard/Edit/5
+        // POST: VIP_Card/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Code,Seri,FkCustomerId,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VIP_Card vipCard)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Code,Seri,Fk_Customer_Id,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VIP_Card vIP_Card)
         {
-            if (id != vipCard.Id)
+            if (id != vIP_Card.Id)
             {
                 return NotFound();
             }
@@ -116,12 +116,12 @@ namespace Tella_CMS.Controllers
             {
                 try
                 {
-                    _context.Update(vipCard);
+                    _context.Update(vIP_Card);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VipCardExists(vipCard.Id))
+                    if (!VIP_CardExists(vIP_Card.Id))
                     {
                         return NotFound();
                     }
@@ -132,10 +132,10 @@ namespace Tella_CMS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vipCard);
+            return View(vIP_Card);
         }
 
-        // GET: VipCard/Delete/5
+        // GET: VIP_Card/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -143,36 +143,36 @@ namespace Tella_CMS.Controllers
                 return NotFound();
             }
 
-            var vipCard = await _context.VIP_Card
+            var vIP_Card = await _context.VIP_Card
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (vipCard == null)
+            if (vIP_Card == null)
             {
                 return NotFound();
             }
 
-            return View(vipCard);
+            return View(vIP_Card);
         }
 
-        // POST: VipCard/Delete/5
+        // POST: VIP_Card/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var vipCard = await _context.VIP_Card.FindAsync(id);
-            _context.VIP_Card.Remove(vipCard);
+            var vIP_Card = await _context.VIP_Card.FindAsync(id);
+            _context.VIP_Card.Remove(vIP_Card);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VipCardExists(string id)
+        private bool VIP_CardExists(string id)
         {
             return _context.VIP_Card.Any(e => e.Id == id);
         }
         public async Task<IActionResult> CapThe(string id)
         {
             var item = await _context.VIP_Card
-                .Where(p=>p.RowStatus == (int)RowStatusEnum.None)
-                .FirstOrDefaultAsync(p=>p.Id == id);
+                .Where(p => p.RowStatus == (int)RowStatusEnum.None)
+                .FirstOrDefaultAsync(p => p.Id == id);
             ViewBag.Seri = item.Seri;
             ViewBag.Id = item.Id;
             return View();
@@ -185,10 +185,11 @@ namespace Tella_CMS.Controllers
             var item = await _context.VIP_Card.FirstOrDefaultAsync(p => p.Id == vm.Id);
             item.Fk_Customer_Id = vm.FkCustomerId;
             item.RowStatus = (int)RowStatusEnum.Normal;
-            
+
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
     }
     public class VipCardViewModel
     {

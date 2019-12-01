@@ -1,4 +1,4 @@
-﻿@model Tella_CMS.Models.Customer
+﻿@model Tella_CMS.Efs.Entities.Customer
 
 @{
     ViewData["Title"] = "Delete";
@@ -66,10 +66,10 @@
             @Html.DisplayFor(model => model.Active)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FkCustomerId)
+            @Html.DisplayNameFor(model => model.Fk_Customer_Id)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FkCustomerId)
+            @Html.DisplayFor(model => model.Fk_Customer_Id)
         </dd>
     </dl>
     

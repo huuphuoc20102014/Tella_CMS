@@ -1,102 +1,82 @@
-﻿@model Tella_CMS.Models.Customer
+﻿@model Tella_CMS.Efs.Entities.Customer
 
-<h4>Thêm mới khách hàng</h4>
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Customer</h4>
 <hr />
-<form asp-controller="Customer" asp-action="Create" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-        </div>
-        <div class="col-md-7">
-            <input type="submit" value="Tạo" class="btn btn-primary" />
-            <a asp-action="Index" class="k-button">Quay lại</a>
-        </div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address1" class="control-label"></label>
+                <input asp-for="Address1" class="form-control" />
+                <span asp-validation-for="Address1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address2" class="control-label"></label>
+                <input asp-for="Address2" class="form-control" />
+                <span asp-validation-for="Address2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fk_Customer_Id" class="control-label"></label>
+                <input asp-for="Fk_Customer_Id" class="form-control" />
+                <span asp-validation-for="Fk_Customer_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-            <label asp-for="Code" class="col-form-label">Mã khách hàng</label>
-            <span class="text-danger">*</span>
-        </div>
-        <div class="col-md-7">
-            <input asp-for="Code" class="k-textbox form-control" required />
-        </div>
-        <div class="offset-md-3 col-md-7 at-wrapper-validate">
-            <span asp-validation-for="Code" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-            <label asp-for="FullName" class="col-form-label">Tên khách hàng</label>
-            <span class="text-danger">*</span>
-        </div>
-        <div class="col-md-7">
-            <input asp-for="FullName" class="k-textbox form-control" required />
-        </div>
-        <div class="offset-md-3 col-md-7 at-wrapper-validate">
-            <span asp-validation-for="FullName" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-            <label asp-for="Telephone" class="col-form-label">Số điện thoại</label>
-            <span class="text-danger">*</span>
-        </div>
-        <div class="col-md-7">
-            <input asp-for="Telephone" class="k-textbox form-control" required />
-        </div>
-        <div class="offset-md-3 col-md-7 at-wrapper-validate">
-            <span asp-validation-for="Telephone" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-            <label asp-for="Age" class="col-form-label">Năm sinh</label>
-            <span class="text-danger">*</span>
-        </div>
-        <div class="col-md-7">
-            <input asp-for="Age" class="k-textbox form-control" required />
-        </div>
-        <div class="offset-md-3 col-md-7 at-wrapper-validate">
-            <span asp-validation-for="Age" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-            <label asp-for="Address1" class="col-form-label">Địa chỉ</label>
-            <span class="text-danger">*</span>
-        </div>
-        <div class="col-md-7">
-            <input asp-for="Address1" class="k-textbox form-control" required />
-        </div>
-        <div class="offset-md-3 col-md-7 at-wrapper-validate">
-            <span asp-validation-for="Address1" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-            <label asp-for="Email" class="col-form-label">Email</label>
-            <span class="text-danger">*</span>
-        </div>
-        <div class="col-md-7">
-            <input asp-for="Email" class="k-textbox form-control" required />
-        </div>
-        <div class="offset-md-3 col-md-7 at-wrapper-validate">
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-md-3 text-md-right ">
-        </div>
-        <div class="col-md-7">
-            <input type="submit" value="Tạo" class="btn btn-primary" />
-            <a asp-action="Index" class="k-button">Quay lại</a>
-        </div>
-    </div>
-</form>
-
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

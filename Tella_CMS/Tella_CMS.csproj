@@ -6,6 +6,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Customers\**" />
+    <Compile Remove="Views\VipCard\**" />
+    <Content Remove="Views\Customers\**" />
+    <Content Remove="Views\VipCard\**" />
+    <EmbeddedResource Remove="Views\Customers\**" />
+    <EmbeddedResource Remove="Views\VipCard\**" />
+    <None Remove="Views\Customers\**" />
+    <None Remove="Views\VipCard\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\CustomersController.cs" />
+    <Compile Remove="Controllers\CustomersssController.cs" />
+    <Compile Remove="Controllers\VipCardController.cs" />
     <Compile Remove="Models\AspNetRoleClaims.cs" />
     <Compile Remove="Models\AspNetRoles.cs" />
     <Compile Remove="Models\AspNetUserClaims.cs" />

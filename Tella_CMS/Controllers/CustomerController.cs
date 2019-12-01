@@ -47,6 +47,33 @@ namespace Tella_CMS.Controllers
             }
             return View(listCustomer);
         }
+        //KH VIP
+        public async Task<IActionResult> KHVIP()
+        {
+            var listCustomer = await _context.Customer
+                .Where(d => Int32.Parse(d.Fk_Customer_Id) == (int)RowStatusEnum.VIP)
+                 .OrderBy(p => p.CreatedDate)
+                         .Select(p => new CustomerViewModel
+                         {
+                             Id = p.Id,
+                             Code = p.Code,
+                             FullName = p.FullName,
+                             Address1 = p.Address1,
+                             Address2 = p.Address2,
+                             Age = p.Age,
+                             Telephone = p.Telephone,
+                             CreatedDate = p.CreatedDate.ToString("dd/MM/yyyy"),                         })
+                        .ToListAsync();
+
+            var index = 0;
+            foreach (var item in listCustomer)
+            {
+                index++;
+                item.Stt = index;
+            }
+            return View(listCustomer);
+        }
+
 
         // GET: Customer/Details/5
         public async Task<IActionResult> Details(string id)

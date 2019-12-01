@@ -1,0 +1,72 @@
+﻿@model List<ProductsViewModel>
+
+@{
+    ViewData["Title"] = "Sản Phẩm";
+}
+
+<h1>Sản Phẩm</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Mã Sản Phẩm
+            </th>
+            <th>
+                Tên Sản Phẩm
+            </th>
+            <th>
+                Giá Sản Phẩm
+            </th>
+            <th>
+                Giá Khuyến Mãi
+            </th>
+            <th>
+                Loại Sản Phẩm
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.STT
+            </td>
+            <td>
+                @item.Code
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.PriceNew
+            </td>
+            <td>
+                @item.FkCategoryId
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Xem</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Xoá</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>

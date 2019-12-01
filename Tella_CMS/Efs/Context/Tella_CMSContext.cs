@@ -25,7 +25,8 @@ namespace Tella_CMS.Efs.Context
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Oder_view> Oder_view { get; set; }
+        public virtual DbSet<Order_Pro> Order_Pro { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<TypeCustomer> TypeCustomer { get; set; }
         public virtual DbSet<TypeProduct> TypeProduct { get; set; }
@@ -216,7 +217,41 @@ namespace Tella_CMS.Efs.Context
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Order>(entity =>
+            modelBuilder.Entity<Oder_view>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("Oder_view");
+
+                entity.Property(e => e.Age)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Code)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.DiaChi)
+                    .IsRequired()
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.NgayMua).HasColumnType("datetime");
+
+                entity.Property(e => e.SDT)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.TenKH)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.TenSP)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Order_Pro>(entity =>
             {
                 entity.Property(e => e.Id).HasMaxLength(50);
 

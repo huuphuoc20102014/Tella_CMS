@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Tella_CMS.Efs.Entities.Oder_view>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Tạo </a>
+</p>
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Tuổi
+            </th>
+            <th>
+                SĐT
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Ngày tạo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RowVersion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RowStatus)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

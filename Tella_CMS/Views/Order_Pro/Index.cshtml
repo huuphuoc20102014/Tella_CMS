@@ -59,24 +59,18 @@
                     @Html.DisplayFor(modelItem => item.Age)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                    @Html.DisplayFor(modelItem => item.SDT)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                    @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                    @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RowVersion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RowStatus)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Code">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Code">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Code">Delete</a>
                 </td>
             </tr>
         }

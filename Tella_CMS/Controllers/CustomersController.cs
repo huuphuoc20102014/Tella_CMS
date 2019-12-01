@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tella_CMS.Efs.Context;
+using Tella_CMS.Efs.Entities;
 using Tella_CMS.Models;
 
 namespace Tella_CMS.Controllers

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tella_CMS.Efs.Context;
+using Tella_CMS.Efs.Entities;
 using Tella_CMS.Models;
 
 namespace Tella_CMS.Controllers
@@ -72,7 +73,7 @@ namespace Tella_CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Code,Seri,FkCustomerId,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VipCard vipCard)
+        public async Task<IActionResult> Create([Bind("Id,Code,Seri,FkCustomerId,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VIP_Card vipCard)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +105,7 @@ namespace Tella_CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Code,Seri,FkCustomerId,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VipCard vipCard)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Code,Seri,FkCustomerId,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] VIP_Card vipCard)
         {
             if (id != vipCard.Id)
             {
@@ -180,10 +181,11 @@ namespace Tella_CMS.Controllers
         public async Task<IActionResult> CapThe(VipCardViewModel vm)
         {
             var itemKH = await _context.Customer.FirstOrDefaultAsync(p => p.Id == vm.FkCustomerId);
+            itemKH.Fk_Customer_Id = "VIP";
             var item = await _context.VIP_Card.FirstOrDefaultAsync(p => p.Id == vm.Id);
             item.Fk_Customer_Id = vm.FkCustomerId;
             item.RowStatus = (int)RowStatusEnum.Normal;
-            itemKH.Fk_Customer_Id = "VIP01";
+            
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

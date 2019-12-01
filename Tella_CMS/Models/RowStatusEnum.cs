@@ -9,6 +9,7 @@ namespace Tella_CMS.Models
     {
         None,
         Normal,
-        Deleted
+        Deleted,
+        VIP
     }
 }

@@ -14,5 +14,6 @@ namespace Tella_CMS.Efs.Entities
         public string Age { get; set; }
         public string SDT { get; set; }
         public string DiaChi { get; set; }
+        public DateTime NgayTao { get; set; }
     }
 }

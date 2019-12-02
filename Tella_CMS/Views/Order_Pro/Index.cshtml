@@ -4,10 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<div style="text-align: center" class="alert alert-primary" role="alert">
+    <h1>Danh sách đơn hàng</h1>
+</div>
 <p>
-    <a asp-action="Create">Tạo </a>
+    <a class="btn btn-primary" asp-action="Create">Tạo mới đơn hàng</a>
 </p>
 <table class="table" id="table">
     <thead>
@@ -68,11 +69,17 @@
                     @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Code">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Code">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Code">Delete</a>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Code">Sửa</a>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Code">Xem</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Code">Xoá</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable();
+    });
+</script>

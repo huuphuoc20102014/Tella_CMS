@@ -236,6 +236,8 @@ namespace Tella_CMS.Efs.Context
 
                 entity.Property(e => e.NgayMua).HasColumnType("datetime");
 
+                entity.Property(e => e.NgayTao).HasColumnType("datetime");
+
                 entity.Property(e => e.SDT)
                     .IsRequired()
                     .HasMaxLength(50);

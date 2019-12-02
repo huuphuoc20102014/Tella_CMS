@@ -206,8 +206,6 @@ namespace Tella_CMS.Efs.Context
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Fk_Customer_Id).HasMaxLength(50);
-
                 entity.Property(e => e.FullName)
                     .IsRequired()
                     .HasMaxLength(100);

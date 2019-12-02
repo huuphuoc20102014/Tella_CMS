@@ -181,7 +181,7 @@ namespace Tella_CMS.Controllers
         public async Task<IActionResult> CapThe(VipCardViewModel vm)
         {
             var itemKH = await _context.Customer.FirstOrDefaultAsync(p => p.Id == vm.FkCustomerId);
-            itemKH.Fk_Customer_Id = "VIP";
+            itemKH.Fk_Customer_Id = 3;
             var item = await _context.VIP_Card.FirstOrDefaultAsync(p => p.Id == vm.Id);
             item.Fk_Customer_Id = vm.FkCustomerId;
             item.RowStatus = (int)RowStatusEnum.Normal;

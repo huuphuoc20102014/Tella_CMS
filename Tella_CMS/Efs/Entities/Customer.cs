@@ -15,6 +15,6 @@ namespace Tella_CMS.Efs.Entities
         public string Email { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool Active { get; set; }
-        public string Fk_Customer_Id { get; set; }
+        public int? Fk_Customer_Id { get; set; }
     }
 }

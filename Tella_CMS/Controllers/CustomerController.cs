@@ -35,7 +35,7 @@ namespace Tella_CMS.Controllers
                              Age = p.Age,
                              Telephone = p.Telephone,
                              CreatedDate = p.CreatedDate.ToString("dd/MM/yyyy"),
-                             FkCustomerId = Int32.Parse(p.Fk_Customer_Id)
+                             FkCustomerId = p.Fk_Customer_Id
                          })
                         .ToListAsync();
 
@@ -51,7 +51,7 @@ namespace Tella_CMS.Controllers
         public async Task<IActionResult> KHVIP()
         {
             var listCustomer = await _context.Customer
-                .Where(d => Int32.Parse(d.Fk_Customer_Id) == (int)RowStatusEnum.VIP)
+                .Where(d => d.Fk_Customer_Id == (int)RowStatusEnum.VIP)
                  .OrderBy(p => p.CreatedDate)
                          .Select(p => new CustomerViewModel
                          {
@@ -212,6 +212,6 @@ namespace Tella_CMS.Controllers
         public string Telephone { get; set; }
         public string Email { get; set; }
         public string CreatedDate { get; set; }
-        public int FkCustomerId { get; set; }
+        public int? FkCustomerId { get; set; }
     }
 }

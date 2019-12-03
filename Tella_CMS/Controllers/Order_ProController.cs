@@ -23,7 +23,7 @@ namespace Tella_CMS.Controllers
         // GET: Order_Pro
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Oder_view.ToListAsync());
+            return View(await _context.Oder_view.OrderBy(p=>p.NgayMua).ToListAsync());
         }
 
         // GET: Order_Pro/Details/5
@@ -34,8 +34,8 @@ namespace Tella_CMS.Controllers
                 return NotFound();
             }
 
-            var order_Pro = await _context.Order_Pro
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var order_Pro = await _context.Oder_view
+                .FirstOrDefaultAsync(m => m.Code == id);
             if (order_Pro == null)
             {
                 return NotFound();
@@ -97,7 +97,7 @@ namespace Tella_CMS.Controllers
                 return NotFound();
             }
 
-            var order_Pro = await _context.Order_Pro.FindAsync(id);
+            var order_Pro = _context.Order_Pro.Where(p => p.Code == id).FirstOrDefault();
             if (order_Pro == null)
             {
                 return NotFound();
@@ -110,34 +110,26 @@ namespace Tella_CMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Code,Fk_Customer_Id,Fk_Product_Id,Quanlity,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate,RowVersion,RowStatus")] Order_Pro order_Pro)
+        public async Task<IActionResult> Edit(OrderViewModel vm)
         {
-            if (id != order_Pro.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(vm);
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(order_Pro);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!Order_ProExists(order_Pro.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(order_Pro);
+            var dbItem = await _context.Order_Pro
+                .Where(h => h.Code == vm.Code)
+                .FirstOrDefaultAsync();
+            // Update db item    
+            dbItem.Code = vm.Code;
+            dbItem.Fk_Customer_Id = vm.Fk_Customer_Id;
+            dbItem.Fk_Product_Id = vm.Fk_Product_Id;
+            dbItem.Quanlity = vm.Quanlity;
+
+            //_dbContext.Entry(dbItem).Property(nameof(Customer.RowVersion)).OriginalValue = vmItem.RowVersion;
+            // Set time stamp for table to handle concurrency conflict
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Order_ProController.Details), new { id = dbItem.Code });
         }
 
         // GET: Order_Pro/Delete/5
@@ -148,8 +140,8 @@ namespace Tella_CMS.Controllers
                 return NotFound();
             }
 
-            var order_Pro = await _context.Order_Pro
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var order_Pro = await _context.Oder_view
+                .FirstOrDefaultAsync(m => m.Code == id);
             if (order_Pro == null)
             {
                 return NotFound();

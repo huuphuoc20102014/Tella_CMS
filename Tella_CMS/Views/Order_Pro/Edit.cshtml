@@ -1,74 +1,85 @@
 ﻿@model Tella_CMS.Efs.Entities.Order_Pro
 
-@{
-    ViewData["Title"] = "Edit";
-}
 
-<h1>Edit</h1>
-
-<h4>Order_Pro</h4>
+<h4>Sửa thông tin đội</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Code" class="control-label"></label>
-                <input asp-for="Code" class="form-control" />
-                <span asp-validation-for="Code" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fk_Customer_Id" class="control-label"></label>
-                <input asp-for="Fk_Customer_Id" class="form-control" />
-                <span asp-validation-for="Fk_Customer_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fk_Product_Id" class="control-label"></label>
-                <input asp-for="Fk_Product_Id" class="form-control" />
-                <span asp-validation-for="Fk_Product_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quanlity" class="control-label"></label>
-                <input asp-for="Quanlity" class="form-control" />
-                <span asp-validation-for="Quanlity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedBy" class="control-label"></label>
-                <input asp-for="UpdatedBy" class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RowStatus" class="control-label"></label>
-                <input asp-for="RowStatus" class="form-control" />
-                <span asp-validation-for="RowStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-controller="Order_Pro" asp-action="Edit" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+            <a asp-action="Delete" asp-route-id="@Model.Code" class="btn btn-danger">Xoá</a>
+            <a asp-action="Edit" asp-route-id="@Model.Code" class="btn btn-success">Tải lại</a>
+            <a asp-action="Details" asp-route-id="@Model.Code" class="k-button btn btn-info">Xem</a>
+            <a asp-action="Index" class="k-button">Quay lại</a>
+        </div>
     </div>
-</div>
+    <input type="hidden" name="Id" value="@Model?.Code" />
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Code" class="col-form-label">Mã</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Code" class="k-textbox form-control" required />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+    </div>
 
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Fk_Customer_Id" class="col-form-label">Mã khách hàng</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Fk_Customer_Id" class="k-textbox form-control" required />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Fk_Customer_Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Fk_Product_Id" class="col-form-label">Mã sản phẩm</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Fk_Product_Id" class="k-textbox form-control" required />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Fk_Product_Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+            <label asp-for="Quanlity" class="col-form-label">Số lượng</label>
+            <span class="text-danger">*</span>
+        </div>
+        <div class="col-md-7">
+            <input asp-for="Quanlity" class="k-textbox form-control" required />
+        </div>
+        <div class="offset-md-3 col-md-7 at-wrapper-validate">
+            <span asp-validation-for="Quanlity" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="row form-group">
+        <div class="col-md-3 text-md-right ">
+        </div>
+        <div class="col-md-7">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+            <a asp-action="Delete" asp-route-id="@Model.Code" class="btn btn-danger">Xoá</a>
+            <a asp-action="Edit" asp-route-id="@Model.Code" class="btn btn-success">Tải lại</a>
+            <a asp-action="Details" asp-route-id="@Model.Code" class="k-button btn btn-info">Xem</a>
+            <a asp-action="Index" class="k-button">Quay lại</a>
+        </div>
+    </div>
+</form>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

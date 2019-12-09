@@ -1,15 +1,29 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+body {
+    background-color: #ff1a1a;
+    color: #fff;
 }
-
+a {
+    color: #fff !important;
+}
+nav.navbar.navbar-expand-sm.navbar-toggleable-sm.navbar-light.bg-white.border-bottom.box-shadow.mb-3 {
+    background: #FFEB3B !important;
+}
+.dataTables_wrapper .dataTables_info {
+    color: #fff !important;
+}
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    background-color: #fff !important;
+}
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
